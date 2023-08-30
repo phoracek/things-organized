@@ -33,15 +33,35 @@ module baseplate() {
     gridfinityBaseplate(gridx, gridy, l_grid, distancex, distancey, style_plate, enable_magnet, style_hole, fitx, fity);
 }
 
+module connector() {
+    translate([0, 0, 2])
+    rotate([0, 90, 0])
+    cylinder(80, 1, 1, center = true);
+}
+
+module connectors() {
+    translate([-0.5 * l_grid, -4.5 * l_grid - 5, 0])
+        connector();
+    translate([-0.5 * l_grid, 4.5 * l_grid + 5, 0])
+        connector();
+    translate([-2.5 * l_grid - 5, -0.5 * l_grid, 0]) rotate([0, 0, 90])
+        connector();
+    translate([2.5 * l_grid + 5, -0.5 * l_grid, 0]) rotate([0, 0, 90])
+        connector();
+}
+
 center = [-0.5 * l_grid, -0.5 * l_grid, -0.5 * l_grid];
 dimensions = [10 * l_grid, 10 * l_grid, l_grid];
 
 if (part > 3) {
     baseplate();
 } else {
-    intersection() {
-        translate(center) rotate([0, 0, 90 * part]) cube(dimensions);
-        baseplate();
+    difference() {
+        intersection() {
+            translate(center) rotate([0, 0, 90 * part]) cube(dimensions);
+            baseplate();
+        };
+        connectors();
     }
 }
 
