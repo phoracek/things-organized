@@ -51,12 +51,12 @@ module connectors() {
     translate([-0.5 * l_grid, 4.3 * l_grid + 5, 0]) connector();
     
     translate([-1.5 * l_grid, 0, 0]) rotate([0, 0, 90]) connector();
-    translate([-2.5 * l_grid - 5, 0, 0]) rotate([0, 0, 90]) connector();
+    translate([-2.5 * l_grid - 3, 0, 0]) rotate([0, 0, 90]) connector();
         
     for (i = [0.5 : 1 : 1.5]) {
         translate([i * l_grid, 0, 0]) rotate([0, 0, 90]) connector();    
     }
-    translate([2.5 * l_grid + 5, 0, 0]) rotate([0, 0, 90]) connector();
+    translate([2.5 * l_grid + 3, 0, 0]) rotate([0, 0, 90]) connector();
 }
 
 center = [-0.5 * l_grid, 0, -0.5 * l_grid];
