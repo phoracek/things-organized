@@ -17,15 +17,15 @@ part = 4; // [0: Top right, 1: Top left, 2: Bottom left, 3: Bottom right, 4: All
 $fa = 8;
 $fs = 0.25;
 gridx = 0; // Automatic, fit distance
-gridy = 0; // Automatic, fit distance
-distancex = 230; // Ikea Helmer
-distancey = 400; // Ikea Helmer
+gridy = 8; // Reduced, so the top row is not under the edge
+distancex = 225; // Ikea Helmer
+distancey = 380; // Ikea Helmer
 style_plate = 0; // Thin
 enable_magnet = false; 
 style_hole = 0; // None
 screw_together = false;
 fitx = 0; // Equally distribute the padding on both sides
-fity = 0; // Equally distribute the padding on both sides
+fity = 0.5; // Equally distribute the padding on both sides
 
 module baseplate() {
     // TODO: Add a way to connect the parts
@@ -40,26 +40,26 @@ module connector() {
 }
 
 module connectors() {
-    for (i = [-1.5 : -1 : -3.5]) {
+    for (i = [-1 : -1 : -3]) {
         translate([-0.5 * l_grid, i * l_grid, 0]) connector();
     }      
-    translate([-0.5 * l_grid, -4.5 * l_grid - 5, 0]) connector();
+    translate([-0.5 * l_grid, -4 * l_grid - 5, 0]) connector();
     
-    for (i = [0.5 : 1 : 3.5]) {
+    for (i = [1 : 1 : 3]) {
         translate([-0.5 * l_grid, i * l_grid, 0]) connector();    
     }   
-    translate([-0.5 * l_grid, 4.5 * l_grid + 5, 0]) connector();
+    translate([-0.5 * l_grid, 4.3 * l_grid + 5, 0]) connector();
     
-    translate([-1.5 * l_grid, -0.5 * l_grid, 0]) rotate([0, 0, 90]) connector();
-    translate([-2.5 * l_grid - 5, -0.5 * l_grid, 0]) rotate([0, 0, 90]) connector();
+    translate([-1.5 * l_grid, 0, 0]) rotate([0, 0, 90]) connector();
+    translate([-2.5 * l_grid - 5, 0, 0]) rotate([0, 0, 90]) connector();
         
     for (i = [0.5 : 1 : 1.5]) {
-        translate([i * l_grid, -0.5 * l_grid, 0]) rotate([0, 0, 90]) connector();    
+        translate([i * l_grid, 0, 0]) rotate([0, 0, 90]) connector();    
     }
-    translate([2.5 * l_grid + 5, -0.5 * l_grid, 0]) rotate([0, 0, 90]) connector();
+    translate([2.5 * l_grid + 5, 0, 0]) rotate([0, 0, 90]) connector();
 }
 
-center = [-0.5 * l_grid, -0.5 * l_grid, -0.5 * l_grid];
+center = [-0.5 * l_grid, 0, -0.5 * l_grid];
 dimensions = [10 * l_grid, 10 * l_grid, l_grid];
 
 if (part > 3) {
