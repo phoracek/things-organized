@@ -26,6 +26,7 @@ https://github.com/kennetek/gridfinity-rebuilt-openscad
 /* [Setup Parameters] */
 $fa = 8;
 $fs = 0.25;
+d_tabh = 10;
 
 /* [General Settings] */
 // number of bases along x-axis
