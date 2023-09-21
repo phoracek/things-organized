@@ -9,7 +9,7 @@ on smaller printers. Use the customizer to select the part to render.
 
 // ===== PARAMETERS ===== //
 // Select the section to render
-part = 4; // [0: Top right, 1: Top left, 2: Bottom left, 3: Bottom right, 4: All]
+part = 2; // [0: Top, 1: Bottom, 2: All]
 
 // ===== IMPLEMENTATION ===== //
 
@@ -28,8 +28,6 @@ fitx = 0; // Equally distribute the padding on both sides
 fity = 0.5; // Equally distribute the padding on both sides
 
 module baseplate() {
-    // TODO: Add a way to connect the parts
-    // TODO: Measure the cabinet and use the actual dimensions
     gridfinityBaseplate(gridx, gridy, l_grid, distancex, distancey, style_plate, enable_magnet, style_hole, fitx, fity);
 }
 
@@ -39,17 +37,8 @@ module connector() {
     cylinder(80, 1, 1, center = true);
 }
 
-module connectors() {
-    for (i = [-1 : -1 : -3]) {
-        translate([-0.5 * l_grid, i * l_grid, 0]) connector();
-    }      
-    translate([-0.5 * l_grid, -4 * l_grid - 5, 0]) connector();
-    
-    for (i = [1 : 1 : 3]) {
-        translate([-0.5 * l_grid, i * l_grid, 0]) connector();    
-    }   
-    translate([-0.5 * l_grid, 4.3 * l_grid + 5, 0]) connector();
-    
+module connectors() { 
+    translate([-0.5 * l_grid, 0, 0]) rotate([0, 0, 90]) connector();
     translate([-1.5 * l_grid, 0, 0]) rotate([0, 0, 90]) connector();
     translate([-2.5 * l_grid - 3, 0, 0]) rotate([0, 0, 90]) connector();
         
@@ -59,15 +48,15 @@ module connectors() {
     translate([2.5 * l_grid + 3, 0, 0]) rotate([0, 0, 90]) connector();
 }
 
-center = [-0.5 * l_grid, 0, -0.5 * l_grid];
+center = [-4 * l_grid, 0, -0.5 * l_grid];
 dimensions = [10 * l_grid, 10 * l_grid, l_grid];
 
-if (part > 3) {
+if (part > 1) {
     baseplate();
 } else {
     difference() {
         intersection() {
-            translate(center) rotate([0, 0, 90 * part]) cube(dimensions);
+            translate(center) rotate([0, 0, -90 * part]) cube(dimensions);
             baseplate();
         };
         connectors();
