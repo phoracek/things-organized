@@ -52,7 +52,7 @@ enable_zsnap = false;
 
 /* [Features] */
 // the type of tabs
-style_tab = 1; //[0:Full,1:Auto,2:Left,3:Center,4:Right,5:None]
+style_tab = 0; //[0:Full,1:Auto,2:Left,3:Center,4:Right,5:None]
 // how should the top lip act
 style_lip = 0; //[0: Regular lip, 1:remove lip subtractively, 2: remove lip and retain height]
 // scoop weight percentage. 0 disables scoop, 1 is regular scoop. Any real number will scale the scoop. 
