@@ -101,8 +101,8 @@ module skadis_peg(fullfill, retainer) {
                     translate([-pt/2 - extra, -2*pw - extra, pw + extra]) {
                         cube(size = [pt + extra, pw + extra, pw + extra], center = false);
                     }
-                    translate([-pt/2 - extra, ptw-3*pw - extra, ptl-pw + extra]) {
-                        cube(size = [pt + extra, pw + extra, pw + extra], center = false);
+                    translate([-pt/2 - extra, ptw-3*pw - extra, ptl-pw + extra - 4]) {
+                        cube(size = [pt + extra, pw + extra, pw + extra + 4], center = false);
                     }
                 }
                 if (fullfill == false) {
@@ -123,7 +123,7 @@ module skadis_peg(fullfill, retainer) {
                                     cylinder(h = pt, r = pw, center = false);
                                 }
                             }
-                            translate([-pt/2, pw, 3*pw]) {
+                            translate([-pt/2, pw, 3*pw - 4]) {
                                 rotate([0, 90, 0]) cylinder(h = pt, r = pw, center = false);
                             }
                             translate([-pt/2, -pw, 3*pw]) {
